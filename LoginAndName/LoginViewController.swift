@@ -23,20 +23,32 @@ class LoginViewController: UIViewController {
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            guard userNameTF.text == userName, passwordTF.text == password else {return}
+            
             let welcomVS = segue.destination as! WelcomeViewController
             welcomVS.welcomeName = "Welcome" + " " + userNameTF.text!
         }
 
-    @IBAction func loginPressedButton() {
-        
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super .touchesBegan(touches, with: event)
+        self.view.endEditing(true)
     }
     
+    
+    @IBAction func loginPressedButton() {
+        guard userNameTF.text == userName, passwordTF.text == password else {
+            shouHelpAlert(title: "Error", mesage: "Не верное имя пользователя или пароль", tag: 0 )
+            return
+            
+        }
+        performSegue(withIdentifier: "goToWelcomVC", sender: nil)
+    }
+   
     @IBAction  func unwindd(for seque: UIStoryboardSegue) {
-      //  guard let loginVS = seque.source as? WelcomeViewController else {return}
+      
         userNameTF.text = ""
         passwordTF.text = ""
     }
+    
     @IBAction func HelpAlertShow(_ sender: UIButton) {
         switch sender.tag {
         case 1: shouHelpAlert(title: "Fogot User Name?", mesage: "User Name is <\(userName)>", tag: sender.tag)
@@ -49,6 +61,9 @@ class LoginViewController: UIViewController {
         let nameAlert = UIAlertController(title: title, message: mesage, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
             switch tag {
+            case 0:
+                self.userNameTF.text = ""
+                self.passwordTF.text = ""
             case 1: self.userNameTF.text = userName
             default: self.passwordTF.text = password
             }

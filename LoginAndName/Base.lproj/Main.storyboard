@@ -43,7 +43,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginPressedButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="gNW-7f-mRu"/>
-                                    <segue destination="vHd-04-adq" kind="presentation" id="NKm-DD-LiG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5Z-V1-HKm">
@@ -76,6 +75,7 @@
                     <connections>
                         <outlet property="passwordTF" destination="Uie-mK-KAz" id="t6c-Pr-fvb"/>
                         <outlet property="userNameTF" destination="OUk-on-KTk" id="cYS-1d-mEJ"/>
+                        <segue destination="vHd-04-adq" kind="presentation" identifier="goToWelcomVC" id="dzr-fc-QnC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
